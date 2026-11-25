@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بيانات الإعداد والإشراف | بيئة العلوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --accent: #00d2ff;
+            --dark: #0a2647;
+            --white: #ffffff;
+            --light-bg: #f1f5f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: var(--dark);
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+            margin: 30px 0 110px 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -50px auto 60px;
+            padding: 0 20px;
+        }
+
+        .academic-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 50px 0 0 0;
+            overflow: hidden;
+            border-top: 6px solid var(--accent);
+        }
+
+        .card-title {
+            background: #f8fafc;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card-content { padding: 30px; }
+
+        /* تنسيق الشخص (الصورة + البيانات) */
+        .person-item {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 15px 0;
+        }
+
+        .person-item:not(:last-child) {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .person-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            object-fit: cover;
+            background: #eee;
+            text-align: center;
+        }
+
+        .person-info h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .person-info p {
+            color: #64748b;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .university-tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: #e1effe;
+            padding: 2px 12px;
+            border-radius: 50px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .designer-credit {
+            color: var(--accent);
+            font-weight: 900;
+            margin-top: 10px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .person-item { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<style>
+    /* تنسيق القائمة المنسدلة */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        z-index: 1;
+        top: 100%;
+        right: 0;
+        overflow: hidden;
+    }
+    .dropdown-content a {
+        color: var(--dark) !important;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 0.9rem !important;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .dropdown-content a:hover { background-color: var(--soft-blue); color: var(--accent) !important; }
+    .dropdown:hover .dropdown-content { display: block; }
+</style>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="intro.html">عن البيئة</a>
+        <div class="dropdown">
+            <a href="#" >المحتوى ▾</a>
+            <div class="dropdown-content">
+                <a href="login.html?type=motion">الإنفوجرافيك المتحرك</a>
+                <a href="login.html?type=interactive">الإنفوجرافيك التفاعلي</a>
+            </div>
+        </div>
+        <a href="supervision.html" style="color: var(--accent);">الإعداد والإشراف</a>
+    </div>
+</nav>
+
+    <header class="page-header">
+        <h1 style="font-family: 'Cairo'; font-weight: 900;">بيانات الإعداد والإشراف </h1>
+        <p>كلية التربية - قسم تكنولوجيا التعليم</p>
+    </header>
+
+    <main class="container">
+        
+        <section class="academic-card">
+            <div class="card-title">👤 إعداد الباحثة</div>
+            <div class="card-content">
+                <div class="person-item">
+                    <img src="sahar.jpg" alt="سحر سيد أبورحاب" class="person-photo">
+                    <div class="person-info">
+                        <h3>سحر سيد أبورحاب</h3>
+                        <p>باحثة ماجستير تخصص تكنولوجيا التعليم</p>
+                        <span class="university-tag">جامعة الوادي الجديد - كلية التربية</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="academic-card">
+            <div class="card-title">🎓 لجنة الإشراف العلمي</div>
+            <div class="card-content">
+                
+                <div class="person-item">
+                    <img src="prof1.jpg" alt="المشرف الأول" class="person-photo">
+                    <div class="person-info">
+                        <h3>أ.د/ محمد سعد الدين محمد</h3>
+                        <p>أستاذ تكنولوجيا التعليم و رئيس قسم المناهج وطرق التدريس</p>
+                        <span class="university-tag">كلية التربية - جامعة الوادي الجديد</span>
+                    </div>
+                </div>
+
+                <div class="person-item">
+                    <img src="prof2.jpg" alt="المشرف الثاني" class="person-photo">
+                    <div class="person-info">
+                        <h3>د/سلوى حسن السيد حسن</h3>
+                        <p>مدرس  بقسم المناهج وطرق التدريس (تخصص تكنولوجيا التعليم)</p>
+                        <span class="university-tag">كلية التربية - جامعة الوادي الجديد</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة للباحثة سحر أبورحاب &copy; 2026</p>
+    </footer>
+
+</body>
+</html>

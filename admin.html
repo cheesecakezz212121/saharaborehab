@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعداد والإشراف | لوحة التحكم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --accent: #00d2ff;
+            --dark: #0a2647;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        /* حاوية اللوحة */
+        .admin-panel {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* الهيدر الخاص باللوحة */
+        .admin-header {
+            background: var(--dark);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .admin-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .admin-header p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .admin-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* فورم الدخول */
+        .admin-body {
+            padding: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            font-family: 'Cairo';
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent);
+            background: #fcfdfe;
+        }
+
+        .admin-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--dark);
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .status-msg {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .footer-credit {
+            background: #f8fafc;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid #edf2f7;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <div class="admin-header">
+            <span class="admin-icon">⚙️</span>
+            <h2>الإعداد والإشراف</h2>
+            <p>منطقة التحكم الخاصة بالباحثة وإدارة النظام</p>
+        </div>
+
+        <div class="admin-body">
+            <div class="input-group">
+                <label>معرف المشرف (ID)</label>
+                <input type="text" id="adminID" placeholder="أدخل كود الإشراف">
+            </div>
+
+            <div class="input-group">
+                <label>كلمة مرور النظام</label>
+                <input type="password" id="adminPass" placeholder="••••••••">
+            </div>
+
+            <button class="admin-btn" onclick="checkAdmin()">
+                دخول لوحة التحكم
+            </button>
+
+            <div id="status" class="status-msg"></div>
+        </div>
+
+        <div class="footer-credit">
+            تطوير النظام: محمود الحسيني &copy; 2026
+        </div>
+    </div>
+
+    <script>
+        function checkAdmin() {
+            const id = document.getElementById('adminID').value;
+            const pass = document.getElementById('adminPass').value;
+            const status = document.getElementById('status');
+
+            // أكواد الإشراف الخاصة (تقدر تغيرها)
+            if (id === 'sahar_admin' && pass === 'admin2026') {
+                status.style.display = 'block';
+                status.style.color = '#10b981';
+                status.innerHTML = '✅ تم التحقق.. جاري فتح لوحة الإعداد';
+                
+                // توجيه لصفحة الإعدادات الفعلية
+                setTimeout(() => {
+                    window.location.href = 'settings.html'; 
+                }, 1500);
+            } else {
+                status.style.display = 'block';
+                status.style.color = '#ef4444';
+                status.innerHTML = '❌ بيانات الإشراف غير صحيحة';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الدخول | بيئة العلوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --accent: #00d2ff;
+            --bg: #0a2647; /* تم التعديل ليتناسب مع الموقع */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a2647 0%, #1a5f7a 100%);
+        }
+
+        /* توهج خلفي احترافي */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            filter: blur(180px);
+            opacity: 0.15;
+            top: -10%;
+            left: -10%;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(25px);
+            padding: 50px 40px;
+            border-radius: 35px;
+            width: 90%;
+            max-width: 450px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .login-card h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .type-badge {
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.2);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent);
+        }
+
+        .input-group { margin-bottom: 20px; text-align: right; }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            font-family: 'Cairo';
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(0,210,255,0.2); }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 10px 25px rgba(0,210,255,0.3);
+        }
+
+        .login-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,210,255,0.5); }
+
+        .error-msg { color: #ff5e5e; font-size: 0.85rem; margin-top: 15px; display: none; font-weight: bold; }
+
+        footer { position: absolute; bottom: 30px; font-size: 0.8rem; opacity: 0.6; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div id="typeLabel" class="type-badge">بوابة الوصول العام</div>
+        <h2>دخول النظام</h2>
+        <p style="opacity: 0.7; margin-bottom: 30px;">أهلاً بك في بيئة العلوم التفاعلية</p>
+        
+        <div class="input-group">
+            <label>اسم المستخدم</label>
+            <input type="text" id="userEmail" placeholder="أدخل اسمك أو بريدك">
+        </div>
+
+        <div class="input-group">
+            <label>كود المجموعة</label>
+            <input type="password" id="userPass" placeholder="••••••••">
+        </div>
+
+        <button class="login-btn" onclick="handleLogin()">تحقق ودخول</button>
+        
+        <div id="error" class="error-msg">❌ الكود غير صحيح، يرجى مراجعة الباحثة سحر.</div>
+    </div>
+
+<script>
+    // 1. كود قراءة النوع من الرابط (شغال تمام)
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    if(type === 'motion') document.getElementById('typeLabel').innerText = 'مسار: الإنفوجرافيك المتحرك';
+    if(type === 'interactive') document.getElementById('typeLabel').innerText = 'مسار: الإنفوجرافيك التفاعلي';
+
+    // 2. الدالة الوحيدة اللي هتشغل كل حاجة
+    function handleLogin() {
+        // سحب القيم من الخانات (استخدمنا IDs الصح اللي في الـ HTML بتاعك)
+        const nameInput = document.getElementById('userEmail').value; 
+        const passInput = document.getElementById('userPass').value;
+        const error = document.getElementById('error');
+
+        // أولاً: التأكد أن الاسم مش فاضي
+        if (nameInput.trim() === "") {
+            alert("من فضلك اكتب اسمك الأول");
+            return;
+        }
+
+        // ثانياً: التحقق من كود المجموعة (الباسورد)
+        if (passInput === 'motion2026' || passInput === 'inter2026') {
+            
+            // --- الجزء المسؤول عن تخزين اسم الطالب (بيشتغل بس لو الباسورد صح) ---
+            let studentsList = JSON.parse(localStorage.getItem('registeredStudents')) || [];
+            studentsList.push({
+                name: nameInput,
+                date: new Date().toLocaleString('ar-EG'),
+                group: (passInput === 'motion2026') ? 'متحرك' : 'تفاعلي'
+            });
+            localStorage.setItem('registeredStudents', JSON.stringify(studentsList));
+            // --------------------------------------------------------------
+
+            // التوجيه للصفحة المناسبة
+            if (passInput === 'motion2026') {
+                sessionStorage.setItem('userGroup', 'motion');
+                window.location.href = 'motion_content.html';
+            } else {
+                sessionStorage.setItem('userGroup', 'interactive');
+                window.location.href = 'interactive_content.html';
+            }
+        } 
+        else {
+            // لو الباسورد غلط
+            error.style.display = 'block';
+            document.querySelector('.login-card').animate([
+                { transform: 'translateX(0px)' }, { transform: 'translateX(10px)' },
+                { transform: 'translateX(-10px)' }, { transform: 'translateX(0px)' }
+            ], { duration: 300 });
+        }
+    }
+</script>
+</body>
+</html>

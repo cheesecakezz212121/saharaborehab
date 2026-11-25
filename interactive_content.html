@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحتوى التفاعلي | بيئة العلوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a5f7a; --accent: #00d2ff; --dark: #0a2647; --bg: #f0f7ff; }
+        
+        /* ضبط الهوامش للناف بار */
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); margin: 0; padding-top: 80px; }
+
+        /* --- تنسيق الناف بار العلوي الثابت --- */
+        .top-nav {
+            background: var(--dark);
+            height: 65px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .top-nav a:hover { color: var(--accent); }
+
+        /* --- تنسيقات الكروت الأصلية --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .inter-card { background: white; border-radius: 25px; padding: 40px; margin-bottom: 30px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border: 2px solid var(--accent); }
+        .icon-box { font-size: 3rem; margin-bottom: 15px; }
+        .play-btn { display: inline-block; background: var(--primary); color: white; text-decoration: none; padding: 15px 40px; border-radius: 12px; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+        .play-btn:hover { background: var(--accent); transform: translateY(-5px); }
+        .lesson-tag { color: var(--accent); font-weight: 900; font-size: 0.9rem; text-transform: uppercase; }
+
+        /* --- تنسيق زر العودة السفلي --- */
+        .footer-nav {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 30px;
+        }
+
+        .exit-btn {
+            background: var(--dark);
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            border: 2px solid var(--accent);
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exit-btn:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html">🏠 العودة للرئيسية</a>
+    </nav>
+
+    <div class="container">
+        <h1 style="text-align: center; color: var(--dark); margin-bottom: 40px;">🕹️ مسار الإنفوجرافيك التفاعلي</h1>
+
+        <div class="inter-card">
+            <div class="icon-box">🧠</div>
+            <span class="lesson-tag">الدرس الأول</span>
+            <h2>المحتوى التفاعلي: [طاقة الوضع]</h2>
+            <p>اضغط على الزر أدناه لفتح المحتوى التفاعلي والبدء في التعلم باللعب.</p>
+            <a href="https://codepen.io/noorulhoda/full/LERMQOK" target="_blank" class="play-btn">ابدأ التجربة التفاعلية</a>
+        </div>
+
+        <div class="inter-card">
+            <div class="icon-box">🧪</div>
+            <span class="lesson-tag">الدرس الثاني</span>
+            <h2>المحتوى التفاعلي: [طاقة الحركة]</h2>
+            <p>استكشف المفاهيم العلمية من خلال هذا النشاط التفاعلي الممتع.</p>
+            <a href="https://codepen.io/noorulhoda/full/VwQGEPq" target="_blank" class="play-btn">ابدأ التجربة التفاعلية</a>
+        </div>
+
+        <div class="footer-nav">
+            <a href="index.html" class="exit-btn">
+                <span>🚪</span> إنهاء النشاط والعودة للرئيسية
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

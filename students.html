@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجل الطلاب المسجلين | لوحة التحكم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --accent: #00d2ff;
+            --dark: #0a2647;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+        }
+
+        .actions-btn {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .btn-danger { background: #ff4d4f; color: white; }
+        .btn-primary { background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>قائمة الطلاب المسجلين بالبيئة</h2>
+        
+        <table id="studentsTable">
+            <thead>
+                <tr>
+                    <th>اسم الطالب</th>
+                    <th>تاريخ ووقت الدخول</th>
+                    <th>المسار المختار</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+
+        <div class="actions-btn">
+            <button class="btn btn-danger" onclick="clearAll()">حذف الكل</button>
+            <a href="index.html" class="btn btn-primary">العودة للموقع</a>
+        </div>
+    </div>
+
+    <script>
+        // قراءة البيانات من الـ Local Storage
+        let studentsList = JSON.parse(localStorage.getItem('registeredStudents')) || [];
+        let tableBody = document.querySelector('#studentsTable tbody');
+
+        // تفريغ الجدول أولاً
+        tableBody.innerHTML = '';
+
+        if (studentsList.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">لا يوجد طلاب مسجلين حتى الآن.</td></tr>';
+        } else {
+            // إضافة صف لكل طالب
+            studentsList.forEach(student => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.name}</td>
+                    <td>${student.date}</td>
+                    <td><span style="background:#e6f9ff; padding:5px 15px; border-radius:15px; color:var(--primary);">${student.group || 'غير محدد'}</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // دالة لمسح البيانات لو حبيت
+        function clearAll() {
+            if (confirm("هل أنت متأكد من مسح جميع بيانات الطلاب؟")) {
+                localStorage.removeItem('registeredStudents');
+                window.location.reload();
+            }
+        }
+    </script>
+
+</body>
+</html>
